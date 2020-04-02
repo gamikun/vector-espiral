@@ -2,7 +2,6 @@ from math import sqrt, sin, cos, pi
 import subprocess
 import cairo
 
-
 def circumference(n, r=1, xy=(0, 0)):
     x, y = xy
     t = pi * 2 / n
@@ -11,10 +10,8 @@ def circumference(n, r=1, xy=(0, 0)):
         for i in range(n)
     ]
 
-TIME = 0.2
 RADIUS = 400
 WIDTH = 1080
-PRINT_CORDS = False
 
 cx, cy = 0.5, 0.5
 dots = circumference(14, r=RADIUS / WIDTH, xy=(0.5, 0.5))
@@ -23,14 +20,8 @@ surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, WIDTH)
 ctx = cairo.Context(surface)
 ctx.scale(WIDTH, WIDTH)
 
-ctx.set_source_rgb(0.0, 0.0, 0.0)
-ctx.paint()
-
 ctx.set_line_width(3.0 / WIDTH)
 ctx.set_source_rgb(1.0, 1.0, 1.0)
-
-#ctx.select_font_face('Arial')
-#ctx.set_font_size(25 / WIDTH)
 
 def line_in_time(ctx, src, dst, time=1.0):
     x, y = src
@@ -82,7 +73,4 @@ for frame in range(frames):
 for extra_second in range(framerate * 3):
     surface.write_to_png(ffmpeg.stdin)
     
-
 ffmpeg.communicate()
-
-
